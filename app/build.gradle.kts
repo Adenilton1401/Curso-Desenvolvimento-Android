@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "devandroid.adenilton.myapplication"
+    namespace = "devandroid.adenilton.applistacurso"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "devandroid.adenilton.myapplication"
+        applicationId = "devandroid.adenilton.applistacurso"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
