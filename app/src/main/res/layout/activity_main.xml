@@ -8,12 +8,114 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Aplicativo Lista Curso"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <EditText
+        android:id="@+id/edtxRecebePrimeiroNome"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Primeiro Nome"
+        android:text="Primeiro Nome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/edtxRecebeSobrenome"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_margin="16dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Sobrenome"
+        android:text="Sobrenome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtxRecebePrimeiroNome"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/edtxCursoDesejado"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_margin="16dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Curso Desejado"
+        android:text="Curso Desejado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtxRecebeSobrenome"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/edtxContato"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_margin="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Telefone de Contato"
+        android:text="Telefone de Contato"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtxCursoDesejado"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnLimpar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="48dp"
+        android:background="@color/corBotoes"
+        android:text="Limpar"
+        app:layout_constraintBottom_toTopOf="@+id/btnFinalizar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtxContato"
+        app:layout_constraintVertical_bias="0.454" />
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:background="@color/corBotoes"
+        android:text="Salvar"
+        app:layout_constraintBottom_toTopOf="@+id/btnFinalizar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toEndOf="@+id/btnLimpar"
+        app:layout_constraintTop_toBottomOf="@+id/edtxContato"
+        app:layout_constraintVertical_bias="0.454" />
+
+    <Button
+        android:id="@+id/btnFinalizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="184dp"
+        android:background="@color/corBotoes"
+        android:text="Finalizar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtxContato"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
