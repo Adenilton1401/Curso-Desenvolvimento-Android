@@ -1,5 +1,6 @@
 package devandroid.adenilton.applistacurso.view;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import devandroid.adenilton.applistacurso.R;
+import devandroid.adenilton.applistacurso.controller.PessoaController;
 import devandroid.adenilton.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText editContato;
     Pessoa pessoa;
     Pessoa outraPessoa;
+
+    PessoaController controller;
+
+    SharedPreferences preferences;
+
+    public static final String NOME_PREFERENCES = "pref_listavip";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        preferences = getSharedPreferences(NOME_PREFERENCES,0);
+
+
+        controller = new PessoaController();
 
         pessoa = new Pessoa();
 
@@ -85,7 +98,21 @@ public class MainActivity extends AppCompatActivity {
             pessoa.setCursoDesejado(editCurso.getText().toString());
             pessoa.setContato(editContato.getText().toString());
 
-            Toast.makeText(MainActivity.this, "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this,
+                    "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
+
+
+            SharedPreferences.Editor listaVip = preferences.edit();
+            listaVip.putString("primeiroNome",pessoa.getPrimeiroNome());
+            listaVip.putString("sobreNome",pessoa.getSobreNome());
+            listaVip.putString("cursoDesejado",pessoa.getCursoDesejado());
+            listaVip.putString("contato",pessoa.getContato());
+            listaVip.apply();
+
+
+
+            controller.salvar(pessoa);
+
 
 
         });
