@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
 
+    public SharedPreferences.Editor listaVip;
+
     public static final String NOME_PREFERENCES = "pref_listavip";
 
     @Override
@@ -42,22 +44,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         preferences = getSharedPreferences(NOME_PREFERENCES,0);
-
-
         controller = new PessoaController();
 
         pessoa = new Pessoa();
-
-        outraPessoa = new Pessoa();
-        outraPessoa.setPrimeiroNome("Elane");
-        outraPessoa.setSobreNome("Morais");
-        outraPessoa.setCursoDesejado("Android");
-        outraPessoa.setContato("96 99992255");
-
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
+        pessoa.setSobreNome(preferences.getString("sobreNome",""));
+        pessoa.setCursoDesejado(preferences.getString("cursoDesejado",""));
+        pessoa.setContato(preferences.getString("contato",""));
 
         inicicarComponentesDoLayout();
-        monstrarNaTela(outraPessoa);
-    }
+        monstrarNaTela(pessoa);
+    }//Fim onCreate
 
     private void monstrarNaTela(Pessoa pessoa) {
         editPrimeiroNome.setText(pessoa.getPrimeiroNome());
@@ -83,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
             editCurso.setText("");
             editContato.setText("");
 
+            listaVip = preferences.edit();
+            listaVip.clear();
+            listaVip.apply();
+
 
         });
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
 
 
-            SharedPreferences.Editor listaVip = preferences.edit();
+            listaVip = preferences.edit();
             listaVip.putString("primeiroNome",pessoa.getPrimeiroNome());
             listaVip.putString("sobreNome",pessoa.getSobreNome());
             listaVip.putString("cursoDesejado",pessoa.getCursoDesejado());
