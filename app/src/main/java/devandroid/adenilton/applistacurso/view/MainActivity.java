@@ -1,11 +1,9 @@
 package devandroid.adenilton.applistacurso.view;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -22,13 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText editCurso;
     private EditText editContato;
     Pessoa pessoa;
-    Pessoa outraPessoa;
+    PessoaController pessoaController;
 
-    PessoaController controller;
-
-    SharedPreferences preferences;
-
-    public static final String NOME_PREFERENCES = "pref_listavip";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,23 +34,16 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        preferences = getSharedPreferences(NOME_PREFERENCES,0);
-
-
-        controller = new PessoaController();
-
         pessoa = new Pessoa();
 
-        outraPessoa = new Pessoa();
-        outraPessoa.setPrimeiroNome("Elane");
-        outraPessoa.setSobreNome("Morais");
-        outraPessoa.setCursoDesejado("Android");
-        outraPessoa.setContato("96 99992255");
-
-
         inicicarComponentesDoLayout();
-        monstrarNaTela(outraPessoa);
-    }
+
+        pessoaController = new PessoaController(MainActivity.this);
+
+       pessoaController.buscar(pessoa);
+
+        monstrarNaTela(pessoa);
+    }//Fim onCreate
 
     private void monstrarNaTela(Pessoa pessoa) {
         editPrimeiroNome.setText(pessoa.getPrimeiroNome());
@@ -83,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             editCurso.setText("");
             editContato.setText("");
 
+            pessoaController.limpar();
 
         });
 
@@ -101,17 +88,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this,
                     "Salvo" + pessoa.toString(), Toast.LENGTH_LONG).show();
 
-
-            SharedPreferences.Editor listaVip = preferences.edit();
-            listaVip.putString("primeiroNome",pessoa.getPrimeiroNome());
-            listaVip.putString("sobreNome",pessoa.getSobreNome());
-            listaVip.putString("cursoDesejado",pessoa.getCursoDesejado());
-            listaVip.putString("contato",pessoa.getContato());
-            listaVip.apply();
-
-
-
-            controller.salvar(pessoa);
+            pessoaController.salvar(pessoa);
 
 
 
