@@ -78,6 +78,45 @@
         app:layout_constraintTop_toBottomOf="@+id/editCurso"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/textTituloSpiner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecione um Curso"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editContato" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSalvar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editContato"
+        app:layout_constraintVertical_bias="0.63" />
+
+
+    <Button
+        android:id="@+id/btnFinalizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="184dp"
+        android:text="@string/txt_btn_finalizar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editContato"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp" />
+
     <Button
         android:id="@+id/btnLimpar"
         android:layout_width="wrap_content"
@@ -88,7 +127,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnFinalizar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editContato"
-        app:layout_constraintVertical_bias="0.454" />
+        app:layout_constraintVertical_bias="0.687" />
 
     <Button
         android:id="@+id/btnSalvar"
@@ -101,18 +140,7 @@
         app:layout_constraintHorizontal_bias="0.73"
         app:layout_constraintStart_toEndOf="@+id/btnLimpar"
         app:layout_constraintTop_toBottomOf="@+id/editContato"
-        app:layout_constraintVertical_bias="0.454" />
+        app:layout_constraintVertical_bias="0.687" />
 
-    <Button
-        android:id="@+id/btnFinalizar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="184dp"
-        android:text="@string/txt_btn_finalizar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editContato"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
