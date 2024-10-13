@@ -10,17 +10,24 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.List;
+
 import devandroid.adenilton.applistacurso.R;
+import devandroid.adenilton.applistacurso.controller.CursoController;
 import devandroid.adenilton.applistacurso.controller.PessoaController;
+import devandroid.adenilton.applistacurso.model.Curso;
 import devandroid.adenilton.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
+
     private EditText editPrimeiroNome;
     private EditText editSobrenome;
     private EditText editCurso;
     private EditText editContato;
     Pessoa pessoa;
     PessoaController pessoaController;
+    CursoController cursoController;
+    List<Curso> listaDeCursos;
 
 
     @Override
@@ -41,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         pessoaController = new PessoaController(MainActivity.this);
 
        pessoaController.buscar(pessoa);
+
+       cursoController = new CursoController();
+
+       listaDeCursos= cursoController.getListaDeCursos();
 
         monstrarNaTela(pessoa);
     }//Fim onCreate
