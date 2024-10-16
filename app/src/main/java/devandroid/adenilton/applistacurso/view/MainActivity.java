@@ -1,8 +1,10 @@
 package devandroid.adenilton.applistacurso.view;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +12,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import devandroid.adenilton.applistacurso.R;
 import devandroid.adenilton.applistacurso.controller.CursoController;
 import devandroid.adenilton.applistacurso.controller.PessoaController;
-import devandroid.adenilton.applistacurso.model.Curso;
 import devandroid.adenilton.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,10 +26,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText editSobrenome;
     private EditText editCurso;
     private EditText editContato;
+    private Spinner spListaDeCursos;
     Pessoa pessoa;
     PessoaController pessoaController;
     CursoController cursoController;
-    List<Curso> listaDeCursos;
+    List<String> nomeDosCursos;
 
 
     @Override
@@ -40,20 +43,22 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        cursoController = new CursoController();
+        pessoaController = new PessoaController(MainActivity.this);
+        nomeDosCursos = new ArrayList<>();
 
-        pessoa = new Pessoa();
+       nomeDosCursos = cursoController.dadosParaSminner();
 
         inicicarComponentesDoLayout();
 
-        pessoaController = new PessoaController(MainActivity.this);
+        pessoa = new Pessoa();
+        pessoaController.buscar(pessoa);
 
-       pessoaController.buscar(pessoa);
 
-       cursoController = new CursoController();
 
-       listaDeCursos= cursoController.getListaDeCursos();
 
         monstrarNaTela(pessoa);
+
     }//Fim onCreate
 
     private void monstrarNaTela(Pessoa pessoa) {
@@ -68,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
         editSobrenome = findViewById(R.id.editSobrenome);
         editCurso = findViewById(R.id.editCurso);
         editContato = findViewById(R.id.editContato);
+        spListaDeCursos = findViewById(R.id.spinner);
+
+        //Adapter
+        //Layout
+        //Injetar o Adapter ao SPinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nomeDosCursos);
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        spListaDeCursos.setAdapter(adapter);
+
 
 
         Button btnLimpar = findViewById(R.id.btnLimpar);
